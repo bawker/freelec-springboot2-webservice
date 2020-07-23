@@ -1,0 +1,59 @@
+{{>layout/header}}
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+
+        <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5 style="font-size: 25px;">Events List</h5>
+                        <div class="ibox-tools">
+                            <button type="button" class="btn btn-primary btn-sm" onclick="location.href='/admin/events/add'">Add</button>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <table class="table">
+                            <colgroup>
+                                <col width="5%">
+                                <col width="">
+                                <col width="10%">
+                                <col width="15%">
+                                <col width="15%">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>title</th>
+                                <th>type</th>
+                                <!--<th>content</th>-->
+                                <th>date</th>
+                                <th>modifiedDate</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{#events_list}}
+                                <tr>
+                                    <td>{{id}}</td>
+                                    <td><a href="/admin/events/update/{{id}}">{{title}}</a></td>
+                                    <td>{{type}}</td>
+                                    <!--<td>{{content}}</td>-->
+                                    <td>{{start_date}} {{start_time}} ~ {{end_date}} {{end_time}}</td>
+                                    <td>{{modifiedDate}}</td>
+                                </tr>
+                            {{/events_list}}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+
+{{>layout/footer}}
