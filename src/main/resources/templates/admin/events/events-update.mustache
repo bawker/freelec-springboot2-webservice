@@ -1,7 +1,7 @@
 {{>layout/header}}
 
-    <link href="/css/admin/plugins/datapicker/datepicker3.css" rel="stylesheet">
-    <link href="/css/admin/plugins/clockpicker/clockpicker.css" rel="stylesheet">
+<link href="/css/admin/plugins/datapicker/datepicker3.css" rel="stylesheet">
+<link href="/css/admin/plugins/clockpicker/clockpicker.css" rel="stylesheet">
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -9,13 +9,18 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5 style="font-size: 25px;">Events Add</h5>
+                    <h5 style="font-size: 25px;">Events Update</h5>
+                    <div class="ibox-tools">
+                        <button type="button" class="btn btn-primary btn-sm" id="btn-delete">delete</button>
+                    </div>
                 </div>
                 <div class="ibox-content">
+                    {{#events}}
                     <form method="post" class="form-horizontal">
+                        <input type="hidden" name="id" value="{{id}}">
                         <div class="form-group"><label class="col-sm-1 control-label">Title</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="title">
+                                <input type="text" class="form-control" name="title" value="{{title}}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -23,7 +28,7 @@
                         <div class="form-group"><label class="col-sm-1 control-label">Type</label>
                             <div class="col-sm-10">
                                 <label style="margin: 5px 15px 0 0; font-size: 15px;">
-                                    <input type="radio" value="live" name="type" checked="checked"> Live
+                                    <input type="radio" value="live" name="type"> Live
                                 </label>
                                 <label style="margin: 5px 15px 0 0; font-size: 15px;">
                                     <input type="radio" value="archive" name="type"> Archive
@@ -35,9 +40,9 @@
                         <div class="form-group"><label class="col-sm-1 control-label">Date</label>
                             <div class="col-sm-10" style="float: left;">
                                 <div class="input-daterange input-group col-sm-4" id="datepicker">
-                                    <input type="text" class="input-sm form-control" name="start_date" value="">
+                                    <input type="text" class="input-sm form-control" name="start_date" value="{{start_date}}">
                                     <span class="input-group-addon">to</span>
-                                    <input type="text" class="input-sm form-control" name="end_date" value="">
+                                    <input type="text" class="input-sm form-control" name="end_date" value="{{end_date}}">
                                 </div>
                             </div>
                         </div>
@@ -46,14 +51,14 @@
                         <div class="form-group"><label class="col-sm-1 control-label">Date</label>
                             <div class="col-sm-10" style="float: left;">
                                 <div class="input-group clockpicker col-sm-2" data-autoclose="true" style="float: left;">
-                                    <input type="text" class="form-control" name="start_time" value="09:30">
+                                    <input type="text" class="form-control" name="start_time" value="{{start_time}}">
                                     <span class="input-group-addon">
                                         <span class="fa fa-clock-o"></span>
                                     </span>
                                 </div>
 
                                 <div class="input-group clockpicker col-sm-2" data-autoclose="true" style="float: left;">
-                                    <input type="text" class="form-control" name="end_time" value="09:30">
+                                    <input type="text" class="form-control" name="end_time" value="{{end_time}}">
                                     <span class="input-group-addon">
                                         <span class="fa fa-clock-o"></span>
                                     </span>
@@ -65,7 +70,7 @@
 
                         <div class="form-group"><label class="col-sm-1 control-label">Content</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" name="content"></textarea>
+                                <textarea class="form-control" name="content">{{content}}</textarea>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -73,10 +78,11 @@
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
                                 <button id="btn-cancle" class="btn btn-white">Cancel</button>
-                                <button id="btn-save" class="btn btn-primary">Save</button>
+                                <button id="btn-update" class="btn btn-primary">Update</button>
                             </div>
                         </div>
                     </form>
+                    {{/events}}
                 </div>
             </div>
 
@@ -95,6 +101,8 @@
 
         $(".clockpicker").clockpicker();
 
+        //초기 값 세팅
+        $("input[name=type]:input[value='{{events.type}}']").attr("checked", true);
 
     });
 

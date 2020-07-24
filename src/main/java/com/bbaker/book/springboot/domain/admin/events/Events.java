@@ -2,6 +2,7 @@ package com.bbaker.book.springboot.domain.admin.events;
 
 import com.bbaker.book.springboot.domain.BaseTimeEntity;
 import com.bbaker.book.springboot.domain.user.User;
+import com.bbaker.book.springboot.web.dto.admin.EventsUpdateReqeustDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -47,6 +48,16 @@ public class Events extends BaseTimeEntity {
         this.start_time = start_time;
         this.end_time = end_time;
         this.user = user;
+    }
+
+    public void update(EventsUpdateReqeustDto events) {
+        this.type = events.getType();
+        this.title = events.getTitle();
+        this.content = events.getContent();
+        this.start_date = events.getStart_date();
+        this.end_date = events.getEnd_date();
+        this.start_time = events.getStart_time();
+        this.end_time = events.getEnd_time();
     }
 
 }
