@@ -30,4 +30,10 @@ public class AdminEventsApiController {
         eventsService.delete(id);
         return id;
     }
+
+
+    @PostMapping("/add/test")
+    public Long saveTest(@RequestBody EventsSaveRequestDto requestDto) {
+        return eventsService.saveTest(requestDto);
+    }
 }

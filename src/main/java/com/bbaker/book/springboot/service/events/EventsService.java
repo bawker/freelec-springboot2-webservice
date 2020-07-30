@@ -67,4 +67,13 @@ public class EventsService {
         eventsRepository.deleteById(id);
     }
 
+
+
+
+
+    @Transactional
+    public Long saveTest(EventsSaveRequestDto requestDto) {
+        return eventsRepository.save(requestDto.toEntity()).getId();
+    }
+
 }
