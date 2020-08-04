@@ -29,4 +29,14 @@ public class LoggingTestController {
         return "/admin/test";
     }
 
+    @GetMapping("/test/index2")
+    public String index2() {
+        return "/test2";
+    }
+
+    @GetMapping("/test/index3")
+    public String index3() {
+        return "test2";
+    }
+
 }
